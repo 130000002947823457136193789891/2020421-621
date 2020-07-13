@@ -1,0 +1,10 @@
+{
+    "cookies": [],
+    "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
+    },
+    "lua_source": "\n        function main(splash, args)\n            # 关闭浏览器的私有模式 (匿名模式) \n            splash.private_mode_disable = false \n            # 配置request\n            splash:on_request(function(request)\n            # request中设置请求头\n            request:set_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0\")')\n            end)\n            # 请求的url\n            url = args.url\n            # 发起request请求\n            assert(splash:go(url))\n            # 等待5s\n            assert(splash:wait(5))\n            # 获取职位搜索输出框标签（元素）\n            input_box = assert(splash:select(\".ipt-search\"))\n            # 输入框获取焦点（相当与单击输入框）\n            input_box:focus()\n            # 往输入框中输入文字\n            input_box:send_text(\"'java'\")\n            assert(splash:wait(0.5))\n            # 按回车键，相当于按键盘的Enter按键\n            input_box:send_keys(\"<Enter>\")\n            assert(splash:wait(10))\n            # 返回加载完成之后的html页面\n            return splash:html()\n        end\n        ",
+    "url": "https://www.zhipin.com/hangzhou/"
+}

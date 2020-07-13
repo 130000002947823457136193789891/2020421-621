@@ -1,0 +1,41 @@
+from pyecharts.charts import Line
+
+line = (
+    Line()
+        .set_global_opts(
+        tooltip_opts=opts.TooltipOpts(is_show=True),
+        xaxis_opts=opts.AxisOpts(type_="category"),
+        yaxis_opts=opts.AxisOpts(
+            type_="value",
+            axistick_opts=opts.AxisTickOpts(is_show=True),
+            splitline_opts=opts.SplitLineOpts(is_show=True),
+        ),
+        title_opts=opts.TitleOpts("山药村二牛视频播放量和评论数折线图"),
+        datazoom_opts=[opts.DataZoomOpts()],
+    )
+        .add_xaxis(xaxis_data=list(videos_new.time))
+        .add_yaxis(
+        series_name="播放量",
+        y_axis=list(videos_new.play),
+        symbol="emptyCircle",
+        is_symbol_show=True,
+        label_opts=opts.LabelOpts(is_show=False),
+        yaxis_index=0,
+    )
+        .add_yaxis(
+        series_name="评论数",
+        y_axis=list(videos_new.comment),
+        symbol="emptyCircle",
+        is_symbol_show=True,
+        label_opts=opts.LabelOpts(is_show=False),
+        yaxis_index=1,
+    )
+        .extend_axis(
+        yaxis=opts.AxisOpts(
+            name="评论数",
+            type_="value",
+            position="right",
+            axislabel_opts=opts.LabelOpts(formatter="{value}"),
+        )
+    )
+)

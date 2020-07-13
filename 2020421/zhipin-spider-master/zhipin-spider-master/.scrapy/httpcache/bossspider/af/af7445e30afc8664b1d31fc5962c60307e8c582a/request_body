@@ -1,0 +1,11 @@
+{
+    "cookies": [],
+    "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en",
+        "Referer": "https://www.zhipin.com/c101210100/?query=%27java%27&page=8",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
+    },
+    "lua_source": "\n        function main(splash, args)\n            splash.private_mode_disable = false\n            splash:on_request(function(request)\n            request:set_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0\")')\n            end)\n            url = args.url\n            assert(splash:go(url))\n            assert(splash:wait(5))\n            return splash:html()\n        end\n        ",
+    "url": "https://www.zhipin.com/c101210100/?query=%27java%27&page=9"
+}
